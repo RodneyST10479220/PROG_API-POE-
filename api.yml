@@ -1,13 +1,27 @@
 name: APIRun-Day
 
 on:
-   push:
-      branches: [ main ]
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
-  demo:
-     runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-     steps:
-       - name: Greetings
-         run: echo "Hello, world"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build project
+        run: dotnet build --configuration Release --no-restore
