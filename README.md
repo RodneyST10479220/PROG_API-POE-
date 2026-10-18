@@ -171,3 +171,7 @@ Adding automated tests and improved API documentation.
 10. Conclusion
 
 RaceDay SA demonstrates the development of a RESTful API using C#, ASP.NET Core Web API, and SQL Server. It provides a foundation for user account management and race event administration while allowing developers to test the functionality through Swagger UI.
+
+## CI/CD Workflow Screenshot
+
+![CI/CD Workflow](screenshots/ProgWorkflow.png)
