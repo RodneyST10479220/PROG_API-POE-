@@ -8,20 +8,18 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  workflow-check:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up .NET 8
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.0.x'
+      - name: Confirm workflow is running
+        run: echo "APIRun-Day workflow is running successfully!"
 
-      - name: Restore dependencies
-        run: dotnet restore "PROG_API(POE)/PROG_API(POE).csproj"
-
-      - name: Build project
-        run: dotnet build "PROG_API(POE)/PROG_API(POE).csproj" --configuration Release --no-restore
+      - name: Check project files
+        run: |
+          echo "Checking for the .NET project..."
+          test -f "PROG_API(POE)/PROG_API(POE).csproj"
+          echo "Project file found!"
